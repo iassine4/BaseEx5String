@@ -10,6 +10,8 @@ public class Ex5String {
 		
 		// Appel du bloc 5.1
         concatExamples(scan);
+        // Appel du bloc 5.2
+        searchWordInPhrase(scan);
 
 	}
 	
@@ -43,5 +45,33 @@ public class Ex5String {
         System.out.println("Méthode 3 (StringBuilder) : " + result3);
     }
     
+    // Bloc 5.2 : Rechercher un mot dans une phrase
+    public static void searchWordInPhrase(Scanner input) {
+    	
+    	System.out.println("\n=== Bloc 5.2 : Recherche d'un mot dans une phrase ===");
+    	
+    	// Lecture de la phrase complète
+        System.out.print(" Entrez une phrase : ");
+        String phrase = input.nextLine();
+        
+     // Lecture du mot recherché (peut contenir plusieurs caractères)
+        System.out.print(" Entrez le mot à rechercher : ");
+        String word = input.nextLine();
+        
+        String phraseLower = phrase.toLowerCase();
+        String wordLower = word.toLowerCase();
+        
+        boolean found = phraseLower.contains(wordLower);
+        
+        if (found) {
+            System.out.printf("Résultat : mot %s trouvé !", word);
+        } else {
+            System.out.println("Résultat : mot non trouvé.");
+            
+        }
+        
+        System.out.println(" Phrase : " + phrase);
+        System.out.println("Mot recherché : " + word);
+    }
    
 }
