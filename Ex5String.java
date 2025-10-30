@@ -12,18 +12,28 @@ public class Ex5String {
         concatExamples(scan);
         // Appel du bloc 5.2
         searchWordInPhrase(scan);
+        // Bloc 5.3 : Remplacement du mot
+        replaceWordInPhrase(scan);
+        
+        // Fermeture du scanner
+        scan.close();
 
+	}
+	
+	// Méthode utilitaire pour demander une saisie utilisateur
+	public static String askUserInput(Scanner input, String message) {
+	    System.out.print(message);
+	    return input.nextLine();
 	}
 	
 	 // Bloc 5.1 : Concaténation
     public static void concatExamples(Scanner input) {
     	
-        System.out.println("=== Bloc 5.1 : Concaténation de chaînes ===");
-        System.out.print(" Entrez la première chaîne : ");
-        String text1 = input.nextLine();
+        System.out.println("=== 5.1 : Concaténation de chaînes ===");
+       
+        String text1 =  askUserInput(input," Entrez la première chaîne : ") ;
         
-        System.out.print(" Entrez la deuxième chaîne : ");
-        String text2 = input.nextLine();
+        String text2 = askUserInput(input, " Entrez la deuxième chaîne : ");
        
         // --- Méthode 1 : avec l’opérateur + ---
         /*
@@ -48,23 +58,25 @@ public class Ex5String {
     // Bloc 5.2 : Rechercher un mot dans une phrase
     public static void searchWordInPhrase(Scanner input) {
     	
-    	System.out.println("\n=== Bloc 5.2 : Recherche d'un mot dans une phrase ===");
+    	System.out.println("\n=== 5.2 : Recherche d'un mot dans une phrase ===");
     	
     	// Lecture de la phrase complète
-        System.out.print(" Entrez une phrase : ");
-        String phrase = input.nextLine();
+    	String phrase = askUserInput(input, " Entrez une phrase : ");
         
-     // Lecture du mot recherché (peut contenir plusieurs caractères)
-        System.out.print(" Entrez le mot à rechercher : ");
-        String word = input.nextLine();
+        // Lecture du mot recherché (peut contenir plusieurs caractères)
+    	String word = askUserInput(input, " Entrez le mot à rechercher : ");
         
+     /*   
         String phraseLower = phrase.toLowerCase();
         String wordLower = word.toLowerCase();
-        
-        boolean found = phraseLower.contains(wordLower);
+      */  
+        String regexWrd = "(?i)\\b" + word + "\\b"; // (?i) => ignore la casse
+
+        //boolean found = phraseLower.contains(wordLower); // .contains() verifie les sous-chaînes
+        boolean found = phrase.matches(".*" + regexWrd + ".*");
         
         if (found) {
-            System.out.printf("Résultat : mot %s trouvé !", word);
+            System.out.printf("Résultat : mot (%s) trouvé !", word);
         } else {
             System.out.println("Résultat : mot non trouvé.");
             
@@ -73,5 +85,7 @@ public class Ex5String {
         System.out.println(" Phrase : " + phrase);
         System.out.println("Mot recherché : " + word);
     }
+   
+    
    
 }
