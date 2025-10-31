@@ -86,6 +86,29 @@ public class Ex5String {
         System.out.println("Mot recherché : " + word);
     }
    
-    
+ // Bloc 5.3 : Remplacer un mot dans une phrase (si trouvé)
+    public static void replaceWordInPhrase(Scanner input) {
+    	System.out.println("\n=== 5.3 : Remplacement d'un mot dans une phrase ===");
+
+    	String phrase = askUserInput(input, " Entrez une phrase : ");
+        String oldWord = askUserInput(input, " Entrez le mot à rechercher : ");
+        String newWord = askUserInput(input, " Entrez le nouveau mot : ");
+        
+        // Regex pour trouver un mot entier, insensible à la casse
+        String regexWrd = "(?i)\\b" + oldWord + "\\b";
+        
+        boolean found = phrase.matches(".*" + regexWrd + ".*"); //vérifie si la phrase contient le mot (pas besoin qu’elle soit égale au mot)
+        
+        if (found) {
+	        String replacedWrd = phrase.replaceAll(regexWrd, newWord); //remplace toutes les occurrences correspondant à la regex
+	        System.out.println("\n Mot trouvé et remplacé !");
+	        System.out.println("Avant  : " + phrase);
+	        System.out.println("Après  : " + replacedWrd);
+        }else {
+            System.out.println("\n Mot non trouvé, aucun remplacement effectué.");
+        }
+        
+    	
+    }
    
 }
