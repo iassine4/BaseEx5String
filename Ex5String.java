@@ -14,6 +14,8 @@ public class Ex5String {
         searchWordInPhrase(scan);
         // Bloc 5.3 : Remplacement du mot
         replaceWordInPhrase(scan);
+        // Bloc 5.4
+        checkPalindrome(scan);
         
         // Fermeture du scanner
         scan.close();
@@ -86,7 +88,7 @@ public class Ex5String {
         System.out.println("Mot recherché : " + word);
     }
    
- // Bloc 5.3 : Remplacer un mot dans une phrase (si trouvé)
+    // Bloc 5.3 : Remplacer un mot dans une phrase (si trouvé)
     public static void replaceWordInPhrase(Scanner input) {
     	System.out.println("\n=== 5.3 : Remplacement d'un mot dans une phrase ===");
 
@@ -107,8 +109,27 @@ public class Ex5String {
         }else {
             System.out.println("\n Mot non trouvé, aucun remplacement effectué.");
         }
-        
-    	
     }
+	// Bloc 5.4 : Vérifier si une chaîne est un palindrome
+    public static void checkPalindrome(Scanner input) {
+    	
+    	System.out.println("\n=== 5.4 : Vérification de palindrome ===");
+    	
+    	String text = askUserInput(input, " Entrez un mot ou une phrase : ");
+    	
+    	String cleanText = text.replaceAll("[^a-zA-Z]", "").toLowerCase(); // garde seulement les lettres
+    	String reversed = new StringBuilder(cleanText).reverse().toString(); //crée un objet StringBuilder initialisé avec le texte nettoyé et inversé
+    	
+    	// Vérification
+        if (cleanText.equals(reversed)) {
+            System.out.println(" C'est un palindrome !");
+        } else {
+            System.out.println(" Ce n'est pas un palindrome.");
+        }
+
+        System.out.println("Texte nettoyé : " + cleanText);
+        System.out.println("Texte inversé : " + reversed);
+    	
+    } 
    
 }
