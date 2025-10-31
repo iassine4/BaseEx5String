@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.Normalizer;
 
 
 public class Ex5String {
@@ -16,7 +17,8 @@ public class Ex5String {
         replaceWordInPhrase(scan);
         // Bloc 5.4
         checkPalindrome(scan);
-        
+        // Bloc 5.5
+        checkSentencePalindrome(scan);
         // Fermeture du scanner
         scan.close();
 
@@ -131,5 +133,36 @@ public class Ex5String {
         System.out.println("Texte inversé : " + reversed);
     	
     } 
+    
+    // Bloc 5.5 : Vérifier si une phrase entière est un palindrome
+    public static void checkSentencePalindrome(Scanner input) {
+        System.out.println("\n=== Bloc 5.5 : Vérification de palindrome sur une phrase ===");
+
+        // On peut tester automatiquement la phrase donnée :
+        String sentence = "Élu par cette crapule";
+
+        // Nettoyage : on garde seulement les lettres (on ignore les espaces, majuscules, ponctuation)
+        String cleanSentence = Normalizer.normalize(sentence, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{IsAlphabetic}]", "")
+                .toLowerCase();
+
+        // Inversion de la chaîne
+        String reversed = new StringBuilder(cleanSentence).reverse().toString();
+
+        // Vérification du palindrome
+        boolean isPalindrome = cleanSentence.equals(reversed);
+
+        // Affichage du résultat
+        System.out.println("Phrase originale : " + sentence);
+        System.out.println("Texte nettoyé    : " + cleanSentence);
+        System.out.println("Texte inversé    : " + reversed);
+
+        if (isPalindrome) {
+            System.out.println(" Cette phrase est un palindrome !");
+        } else {
+            System.out.println(" Cette phrase n'est pas un palindrome.");
+        }
+
+    }
    
 }
